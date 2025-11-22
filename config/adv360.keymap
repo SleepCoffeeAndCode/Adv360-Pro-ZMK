@@ -45,18 +45,165 @@
         };
 
         vs_comment {
-            bindings = <&kp LA(C)>;
+            bindings = <&vscmnt>;
             key-positions = <50 49>;
         };
 
         vs_uncomment {
-            bindings = <&kp LA(R)>;
+            bindings = <&vsuncmnt>;
             key-positions = <49 48>;
         };
 
         f11_combo {
             bindings = <&kp F11>;
             key-positions = <37 38>;
+        };
+
+        vs_build {
+            bindings = <&vsbuild>;
+            key-positions = <50 51>;
+        };
+
+        vs_cursor_up {
+            bindings = <&vs_addcursor_up>;
+            key-positions = <53 69>;
+        };
+
+        vs_cursor_dn {
+            bindings = <&vs_addcursor_dn>;
+            key-positions = <68 69>;
+        };
+
+        home {
+            bindings = <&kp HOME>;
+            key-positions = <52 66>;
+        };
+
+        end {
+            bindings = <&kp END>;
+            key-positions = <67 66>;
+        };
+    };
+
+    macros {
+        copy: copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_CONTROL>,
+                <&macro_tap>,
+                <&kp C>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL>;
+
+            label = "COPY";
+        };
+
+        paste: paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_CONTROL>,
+                <&macro_tap>,
+                <&kp V>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL>;
+
+            label = "PASTE";
+        };
+
+        vs_addcursor_dn: vs_addcursor_dn {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_press>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp DOWN_ARROW>,
+                <&macro_release>,
+                <&kp LEFT_ALT>,
+                <&macro_release>,
+                <&kp LEFT_SHIFT>;
+
+            label = "VS_ADDCURSOR_DN";
+        };
+
+        vs_addcursor_up: vs_addcursor_up {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_press>,
+                <&kp LEFT_SHIFT>,
+                <&macro_tap>,
+                <&kp UP_ARROW>,
+                <&macro_release>,
+                <&kp LEFT_ALT>,
+                <&macro_release>,
+                <&kp LEFT_SHIFT>;
+
+            label = "VS_ADDCURSOR_UP";
+        };
+
+        vsbuild: vsbuild {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp B>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "VSBUILD";
+        };
+
+        vsrun: vsrun {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp V>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "VSRUN";
+        };
+
+        vscmnt: vscmnt {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp C>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "VSCMNT";
+        };
+
+        vsuncmnt: vsuncmnt {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp R>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "VSUNCMNT";
         };
     };
 
@@ -66,11 +213,11 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp ESC    &kp N1     &kp N2        &kp N3            &kp N4        &kp N5  &tog 1                                                                        &mo 3      &kp N6  &kp N7         &kp N8             &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q      &kp W         &kp E             &kp R         &kp T   &kp LC(A)                                                                     &kp LC(X)  &kp Y   &kp U          &kp I              &kp O     &kp P     &kp BSLH
-&kp CAPS   &kp A      &kp S         &kp D             &kp F         &kp G   &kp LC(D)  &kp LEFT_ARROW  &kp RIGHT_ARROW         &kp F10         &kp EQUAL  &kp LC(Z)  &kp H   &kp J          &kp K              &kp L     &kp SEMI  &kp SQT
-&sk LSHFT  &kp Z      &kp X         &kp C             &kp V         &kp B                              &ho_tap HOME LC(C)      &kp UP_ARROW                          &kp N   &kp M          &kp COMMA          &kp DOT   &kp FSLH  &sk RSHFT
-&mo 2      &kp GRAVE  &sk LEFT_WIN  &sk LEFT_CONTROL  &sk LEFT_ALT          &kp BSPC   &kp DEL         &ho_tap END LC(V)       &kp DOWN_ARROW  &kp ENTER  &kp SPACE          &sk RIGHT_ALT  &sk RIGHT_CONTROL  &kp LBKT  &kp RBKT  &mo 2
+&kp ESC    &kp N1     &kp N2        &kp N3            &kp N4        &kp N5  &tog 1                                                                     &mo 3      &kp N6  &kp N7         &kp N8             &kp N9    &kp N0    &kp MINUS
+&kp TAB    &kp Q      &kp W         &kp E             &kp R         &kp T   &kp LC(A)                                                                  &kp LC(X)  &kp Y   &kp U          &kp I              &kp O     &kp P     &kp BSLH
+&kp CAPS   &kp A      &kp S         &kp D             &kp F         &kp G   &kp LC(D)  &kp LEFT_ARROW  &kp RIGHT_ARROW      &kp F10         &kp EQUAL  &kp LC(Z)  &kp H   &kp J          &kp K              &kp L     &kp SEMI  &kp SQT
+&sk LSHFT  &kp Z      &kp X         &kp C             &kp V         &kp B                              &copy                &kp UP_ARROW                          &kp N   &kp M          &kp COMMA          &kp DOT   &kp FSLH  &sk RSHFT
+&mo 2      &kp GRAVE  &sk LEFT_WIN  &sk LEFT_CONTROL  &sk LEFT_ALT          &kp BSPC   &kp DEL         &paste               &kp DOWN_ARROW  &kp ENTER  &kp SPACE          &sk RIGHT_ALT  &sk RIGHT_CONTROL  &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
@@ -88,11 +235,11 @@
         fn {
             display-name = "Fn";
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &tog 1                                      &mo 3   &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
-&trans  &trans  &trans  &trans  &trans  &trans  &none                                       &none   &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &none   &trans  &trans      &trans  &trans  &none   &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans          &trans  &trans  &trans   &trans   &trans
+&kp F1  &kp F2  &kp F3     &kp F4  &kp F5  &kp F6  &tog 1                                                                       &mo 3   &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
+&trans  &trans  &trans     &trans  &trans  &trans  &none                                                                        &none   &trans  &trans  &trans  &trans   &trans   &trans
+&trans  &trans  &trans     &trans  &trans  &trans  &none   &kp LG(LC(LEFT_ARROW))  &kp LG(LC(RIGHT_ARROW))      &trans  &trans  &none   &trans  &trans  &trans  &trans   &trans   &trans
+&trans  &trans  &trans     &trans  &trans  &trans                                  &trans                       &trans                  &trans  &trans  &trans  &trans   &trans   &trans
+&trans  &trans  &kp LG(L)  &trans  &trans          &trans  &trans                  &trans                       &trans  &trans  &trans          &trans  &trans  &trans   &trans   &trans
             >;
         };
 
