@@ -29,6 +29,16 @@
             tapping-term-ms = <200>;
             flavor = "tap-preferred";
         };
+
+        long_ho_tap: long_ho_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LONG_HO_TAP";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <350>;
+        };
     };
 
     combos {
@@ -205,6 +215,90 @@
 
             label = "VSUNCMNT";
         };
+
+        select_all: select_all {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_CONTROL>,
+                <&macro_tap>,
+                <&kp A>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL>;
+
+            label = "SELECT_ALL";
+        };
+
+        duplicate: duplicate {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_CONTROL>,
+                <&macro_tap>,
+                <&kp D>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL>;
+
+            label = "DUPLICATE";
+        };
+
+        undo: undo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_CONTROL>,
+                <&macro_tap>,
+                <&kp Z>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL>;
+
+            label = "UNDO";
+        };
+
+        cut: cut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_CONTROL>,
+                <&macro_tap>,
+                <&kp X>,
+                <&macro_release>,
+                <&kp LEFT_CONTROL>;
+
+            label = "CUT";
+        };
+
+        vs_sorround: vs_sorround {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp W>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "VS_SORROUND";
+        };
+
+        vs_find_all: vs_find_all {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_ALT>,
+                <&macro_tap>,
+                <&kp F>,
+                <&macro_release>,
+                <&kp LEFT_ALT>;
+
+            label = "VS_FIND_ALL";
+        };
     };
 
     keymap {
@@ -213,11 +307,11 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp ESC    &kp N1     &kp N2        &kp N3            &kp N4        &kp N5  &tog 1                                                                     &mo 3      &kp N6  &kp N7         &kp N8             &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q      &kp W         &kp E             &kp R         &kp T   &kp LC(A)                                                                  &kp LC(X)  &kp Y   &kp U          &kp I              &kp O     &kp P     &kp BSLH
-&kp CAPS   &kp A      &kp S         &kp D             &kp F         &kp G   &kp LC(D)  &kp LEFT_ARROW  &kp RIGHT_ARROW      &kp F10         &kp EQUAL  &kp LC(Z)  &kp H   &kp J          &kp K              &kp L     &kp SEMI  &kp SQT
-&sk LSHFT  &kp Z      &kp X         &kp C             &kp V         &kp B                              &copy                &kp UP_ARROW                          &kp N   &kp M          &kp COMMA          &kp DOT   &kp FSLH  &sk RSHFT
-&mo 2      &kp GRAVE  &sk LEFT_WIN  &sk LEFT_CONTROL  &sk LEFT_ALT          &kp BSPC   &kp DEL         &paste               &kp DOWN_ARROW  &kp ENTER  &kp SPACE          &sk RIGHT_ALT  &sk RIGHT_CONTROL  &kp LBKT  &kp RBKT  &mo 2
+&kp ESC    &kp N1                &kp N2                &kp N3                &kp N4                &kp N5  &tog 1                                                                     &mo 3      &kp N6  &kp N7         &kp N8             &kp N9    &kp N0    &kp MINUS
+&kp TAB    &kp Q                 &long_ho_tap LA(W) W  &kp E                 &kp R                 &kp T   &vsuncmnt                                                                  &vsrun     &kp Y   &kp U          &kp I              &kp O     &kp P     &kp BSLH
+&kp CAPS   &long_ho_tap LC(A) A  &long_ho_tap LC(S) S  &long_ho_tap LC(D) D  &long_ho_tap LC(F) F  &kp G   &vscmnt    &kp LEFT_ARROW  &kp RIGHT_ARROW      &kp F10         &kp EQUAL  &vsbuild   &kp H   &kp J          &kp K              &kp L     &kp SEMI  &kp SQT
+&sk LSHFT  &long_ho_tap LC(Z) Z  &long_ho_tap LC(X) X  &long_ho_tap LC(C) C  &long_ho_tap LC(V) V  &kp B                              &copy                &kp UP_ARROW                          &kp N   &kp M          &kp COMMA          &kp DOT   &kp FSLH  &sk RSHFT
+&mo 2      &kp GRAVE             &sk LEFT_WIN          &sk LEFT_CONTROL      &sk LEFT_ALT                  &kp BSPC   &kp DEL         &paste               &kp DOWN_ARROW  &kp ENTER  &kp SPACE          &sk RIGHT_ALT  &sk RIGHT_CONTROL  &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
