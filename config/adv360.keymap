@@ -329,6 +329,34 @@
 
             label = "VS_FIND_ALL";
         };
+
+        mac_copy: mac_copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND>,
+                <&macro_tap>,
+                <&kp C>,
+                <&macro_release>,
+                <&kp LEFT_COMMAND>;
+
+            label = "MAC_COPY";
+        };
+
+        mac_paste: mac_paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND>,
+                <&macro_tap>,
+                <&kp V>,
+                <&macro_release>,
+                <&kp LEFT_COMMAND>;
+
+            label = "MAC_PASTE";
+        };
     };
 
     keymap {
@@ -337,7 +365,7 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp EQUAL  &kp N1                &kp N2                &kp N3                &kp N4                &kp N5  &tog 1                                                                     &mo 3                     &kp N6  &kp N7         &kp N8             &kp N9    &kp N0    &kp MINUS
+&kp EQUAL  &kp N1                &kp N2                &kp N3                &kp N4                &kp N5  &tog 4                                                                     &mo 3                     &kp N6  &kp N7         &kp N8             &kp N9    &kp N0    &kp MINUS
 &kp TAB    &kp Q                 &long_ho_tap LA(W) W  &kp E                 &kp R                 &kp T   &kp LA(R)                                                                  &long_ho_tap LA(V) LG(V)  &kp Y   &kp U          &kp I              &kp O     &kp P     &kp BSLH
 &kp CAPS   &long_ho_tap LC(A) A  &long_ho_tap LC(S) S  &long_ho_tap LC(D) D  &long_ho_tap LC(F) F  &kp G   &kp LA(C)  &kp LEFT_ARROW  &kp RIGHT_ARROW      &kp ESC         &kp F10    &kp LA(B)                 &kp H   &kp J          &kp K              &kp L     &kp SEMI  &kp SQT
 &sk LSHFT  &long_ho_tap LC(Z) Z  &long_ho_tap LC(X) X  &long_ho_tap LC(C) C  &long_ho_tap LC(V) V  &kp B                              &copy                &kp UP_ARROW                                         &kp N   &kp M          &kp COMMA          &kp DOT   &kp FSLH  &sk RSHFT
@@ -378,24 +406,15 @@
             >;
         };
 
-        extra1 {
-            display-name = "Red";
-            status = "reserved";
-        };
-
-        extra2 {
-            display-name = "Purple";
-            status = "reserved";
-        };
-
-        extra3 {
-            display-name = "Cyan";
-            status = "reserved";
-        };
-
-        extra4 {
-            display-name = "Yellow";
-            status = "reserved";
+        MAC {
+            display-name = "Base";
+            bindings = <
+&kp EQUAL  &kp N1                &kp N2                &kp N3                &kp N4                &kp N5  &trans                                                                     &mo 3                     &kp N6  &kp N7         &kp N8             &kp N9    &kp N0    &kp MINUS
+&kp TAB    &kp Q                 &long_ho_tap LA(W) W  &kp E                 &kp R                 &kp T   &kp LA(R)                                                                  &long_ho_tap LA(V) LG(V)  &kp Y   &kp U          &kp I              &kp O     &kp P     &kp BSLH
+&kp CAPS   &long_ho_tap LC(A) A  &long_ho_tap LC(S) S  &long_ho_tap LC(D) D  &long_ho_tap LC(F) F  &kp G   &kp LA(C)  &kp LEFT_ARROW  &kp RIGHT_ARROW      &kp ESC         &kp F10    &kp LA(B)                 &kp H   &kp J          &kp K              &kp L     &kp SEMI  &kp SQT
+&sk LSHFT  &long_ho_tap LC(Z) Z  &long_ho_tap LC(X) X  &long_ho_tap LC(C) C  &long_ho_tap LC(V) V  &kp B                              &mac_copy            &kp UP_ARROW                                         &kp N   &kp M          &kp COMMA          &kp DOT   &kp FSLH  &sk RSHFT
+&mo 2      &kp GRAVE             &sk LEFT_WIN          &sk LEFT_CONTROL      &sk LEFT_ALT                  &kp BSPC   &kp DEL         &mac_paste           &kp DOWN_ARROW  &kp ENTER  &kp SPACE                         &sk RIGHT_ALT  &sk RIGHT_CONTROL  &kp LBKT  &kp RBKT  &mo_tap 2 LG(V)
+            >;
         };
     };
 };
